@@ -19,11 +19,7 @@ Workflow:
     4. Print the received values.
     5. Close the connection safely.
 
-Author:
-    Abbas Mahdiyeh
 
-Project:
-    Multimodal Wearable Physio Monitor
 """
 
 import sys
