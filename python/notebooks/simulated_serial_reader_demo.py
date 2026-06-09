@@ -17,6 +17,31 @@ Workflow:
     3. Print the simulated incoming data.
 """
 
+"""
+Generate one simulated sensor sample.
+
+Simulation assumptions:
+
+PPG (MAX30102):
+    - IR and Red signals are always positive.
+    - Values are generated within a realistic range for testing.
+
+Accelerometer (MPU6050):
+    - Positive and negative values are possible depending on
+      movement direction and sensor orientation.
+    - Z-axis is centered around Earth's gravity (~9.81 m/s²)
+      to simulate a stationary wearable device.
+
+Gyroscope (MPU6050):
+    - Positive values indicate rotation in one direction.
+    - Negative values indicate rotation in the opposite direction.
+    - Values are generated within a realistic angular velocity range.
+
+Purpose:
+    Allows testing the complete data-processing pipeline without
+    requiring physical ESP32 hardware or sensors.
+"""
+
 import random
 import time
 
@@ -31,10 +56,10 @@ def generate_simulated_sensor_line() -> str:
     # Simulated accelerometer values from MPU6050
     acc_x = round(random.uniform(-1.0, 1.0), 3)
     acc_y = round(random.uniform(-1.0, 1.0), 3)
-    acc_z = round(random.uniform(8.5, 10.5), 3)
+    acc_z = round(random.uniform(8.5, 10.5), 3) # Simulate gravity when device is stationary
 
     # Simulated gyroscope values from MPU6050
-    gyro_x = round(random.uniform(-250.0, 250.0), 3)
+    gyro_x = round(random.uniform(-250.0, 250.0), 3) # Simulate rotational movement around each axis
     gyro_y = round(random.uniform(-250.0, 250.0), 3)
     gyro_z = round(random.uniform(-250.0, 250.0), 3)
 
